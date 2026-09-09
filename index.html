@@ -13,6 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
 <!--
   アドバンスグループ 採用サイト TOP デザイン
+  v0.46 2026/9/9  SPのヒーロー：v0.45（写真に全文を重ねる案）を取り消し v0.44 の構成に戻したうえで、
+                 ・キャッチ（.hero__title）を少し下げ、下端が写真に約24pxかかる位置に
+                 ・リード（.hero__side）をSPでも表示。写真の下に横書き・右寄せ
+  v0.45 2026/9/9  （取り消し）SPのヒーローを写真にテキストを重ねる構成に変更
+  v0.44 2026/9/9  1023px 以下：ナビと CTA を非表示にし、ハンバーガーメニュー（二本線 → 開くと ×）に切り替え
+                 メニュー（.sp-menu）はヘッダー下から全画面に展開。ナビ4件＋CTA2件。<button> + aria-expanded、リンク押下・×で閉じる、開いている間は背景スクロールを止める
+  v0.43 2026/9/9  お知らせ：<a> を行全体（日付・カテゴリ・タイトル・矢印）を囲む構造に変更（.news__link）。行のどこを押してもリンクに
+                 hover 時に .news__title の文字色をブランド色に
   v0.42 2026/9/9  よくあるご質問：アコーディオン開閉で PC のボタン位置が動くのを修正（grid-template-rows:auto 1fr で1行目の高さを見出し側に固定）
   v0.41 2026/9/9  ビジョンイラストの枠（.about__vision）を 620px → 800px に拡大（PC）
   v0.40 2026/9/9  .footer__cols 内（住所・電話・リンク）を 13px に（§2-1 逸脱。2026/9/9 承認「§2-1 を承認（.footer__cols 13px）」）
@@ -154,6 +162,7 @@
   ・先輩の声の全文（企業サイト /recruit/ より転記）に誤字と思われる箇所あり。原文どおり掲載中。確認のうえ修正する
     「導いてくれてました」「できるようにりました」「就職しよう思いました」
   ・事業カードのリード文（.biz__lead）4件は制作側の仮文。各事業で確認・差し替え
+  ・SPのハンバーガーメニュー内のリンク構成（ナビ4件＋事業・職種から探す＋採用のお問い合わせ）は仮。要確認
   ・FAQ文言は各事業で確認。回答が短い（1〜2行）項目は開閉UIにする必要があるか要検討（§6）
   ・書体：見出し・サブコピーの明朝化（§2-4）は未適用。コーポレートのトンマナ（ゴシック）を維持するか要判断 → 稲田
 
@@ -292,7 +301,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    ========================================================= */
 .header{position:fixed;inset:0 0 auto 0;z-index:70;padding:22px 0;transition:background .4s,padding .4s}
 .header.is-scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:12px 0;box-shadow:0 1px 0 var(--border-light)}
-.header__inner{display:flex;align-items:center;justify-content:space-between} /* 2026/9/9 旧 flex-start（「採用サイト」がロゴ下にあった頃の名残） */
+.header__inner{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2} /* SPメニュー（同じ header 内・z-index:1）より前面に */ /* 2026/9/9 旧 flex-start（「採用サイト」がロゴ下にあった頃の名残） */
 .header__logo{display:flex;align-items:center;gap:14px}
 .header__logo .logo-svg{width:180px;height:auto;display:block;color:var(--text-main)}
 /* 「RECRUIT」はロゴのロックアップ（採用サイトのサイト名）として英字を使用。2026/9/9 旧「採用サイト」（ロゴ下） */
@@ -306,7 +315,28 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* hover：暗いオーバーレイが左からスライドイン（.entry__block と同じ）2026/9/9 */
 .header__entry::after{content:"";position:absolute;z-index:-1;left:-100%;top:0;width:100%;height:100%;background:rgba(var(--overlay-rgb),.22);transition:left .3s}
 .header__entry:hover::after{left:0}
-@media(max-width:1023px){.header__nav{display:none}.header__logo .logo-svg{width:150px}.header__logo{gap:10px}}
+/* ハンバーガー（1023px以下のみ表示）。二本線 → 開くと ×。2026/9/9 */
+.header__menu-btn{display:none;width:44px;height:44px;position:relative;flex:none;z-index:2}
+.header__menu-btn span{position:absolute;left:10px;width:24px;height:1px;background:var(--text-main);transition:transform .3s var(--ease),top .3s var(--ease)}
+.header__menu-btn span:nth-child(1){top:17px}
+.header__menu-btn span:nth-child(2){top:27px}
+.header__menu-btn[aria-expanded="true"] span:nth-child(1){top:22px;transform:rotate(45deg)}
+.header__menu-btn[aria-expanded="true"] span:nth-child(2){top:22px;transform:rotate(-45deg)}
+/* SPメニュー本体：ヘッダー下から全画面 */
+.sp-menu{position:fixed;inset:0;z-index:1;background:var(--white);padding:96px 24px 40px;overflow-y:auto;
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s}
+.sp-menu.is-open{opacity:1;visibility:visible;transform:none}
+.sp-menu__nav a{display:block;padding:16px 0;border-bottom:1px solid var(--border-light);font-size:var(--fs-lead);letter-spacing:.06em}
+.sp-menu__cta{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.sp-menu__cta .btn{width:100%;min-width:0}
+body.is-menu-open{overflow:hidden}
+.header.is-menu-open{background:var(--white)} /* メニュー展開中はヘッダー背景を白に固定 */
+@media(max-width:1023px){
+  .header__nav,.header__entry{display:none}
+  .header__menu-btn{display:block}
+  .header__logo .logo-svg{width:150px}
+  .header__logo{gap:10px}
+}
 
 /* =========================================================
    Section: hero
@@ -365,13 +395,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes sl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media(max-width:1023px){
   .hero{min-height:auto;padding:100px 0 56px;display:block}
-  .hero__grid{grid-template-columns:1fr;gap:22px;padding-inline:18px}
-  .hero__side{display:none}
+  .hero__grid{grid-template-columns:1fr;gap:22px;padding-inline:18px;align-items:start}
   .hero__main{order:2}
   .hero__photo{height:56vh;min-height:340px}
-  .hero__catch{order:1;flex-direction:row-reverse;justify-content:flex-end;gap:18px}
+  /* 2026/9/9 キャッチを下げて写真に約24pxかける（行間ギャップ22px＋24px を負マージンで相殺）。写真より前面に */
+  .hero__catch{order:1;flex-direction:row-reverse;justify-content:flex-end;gap:18px;position:relative;z-index:3;margin-bottom:-46px;padding-right:12px}
   .hero__bar{height:auto;align-self:stretch}
   .hero__title{writing-mode:horizontal-tb;letter-spacing:.1em;line-height:1.8}
+  /* 2026/9/9 リードをSPでも表示：写真の下に横書き・右寄せ */
+  .hero__side{display:block;order:3;margin:0;text-align:right;animation-delay:1.2s}
+  .hero__side p{writing-mode:horizontal-tb;font-size:var(--fs-body);letter-spacing:.06em;line-height:1.9}
+  .hero__side p span{display:block}
   .hero__mini,.hero__sub{display:none} /* 2026/9/9 SPは重ね写真2枚とも非表示 */
   .hero__scroll{display:none}
 }
@@ -403,21 +437,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .news__list{grid-column:2;grid-row:1 / 3}
 .news__more{grid-column:1;grid-row:2;align-self:start;margin-top:calc(22px - var(--space-gap))} /* 見出しとの間を22pxに（行間ギャップ分を相殺） */
 .news__more .btn{width:100%}
-.news__list li{display:grid;grid-template-columns:auto auto 1fr auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--border-light)}
-.news__list li:first-child{padding-top:0}
-.news__list li:last-child{border-bottom:0;padding-bottom:0}
+.news__list li{border-bottom:1px solid var(--border-light)}
+.news__list li:last-child{border-bottom:0}
+/* 2026/9/9 <a> で行全体を囲む。グリッドは <a> 側に */
+.news__link{display:grid;grid-template-columns:auto auto 1fr auto;gap:18px;align-items:center;padding:20px 0}
+.news__list li:first-child .news__link{padding-top:0}
+.news__list li:last-child .news__link{padding-bottom:0}
 .news__date{font-family:var(--font-num);font-size:var(--fs-body);letter-spacing:.06em;color:var(--text-sub)}
 .news__cat{font-size:12px; /* 2026/9/9 §2-1 逸脱（最小16px/14px）。指示者承認済み。旧 var(--fs-body) */letter-spacing:.06em;padding:3px 12px;border:1px solid var(--border-light);text-align:center;color:var(--text-sub);line-height:1.8;white-space:nowrap}
-.news__title{font-size:var(--fs-body);line-height:1.9}
+.news__title{font-size:var(--fs-body);line-height:1.9;transition:color .3s}
+.news__link:hover .news__title{color:var(--brand-main)} /* 2026/9/9 hover で文字色をブランド色に */
 /* 2026/9/9 企業サイトの .arrow::after と同じ矢印。hover で右に20px */
 .news__arrow{display:inline-block;width:8px;height:8px;border-top:1px solid var(--text-main);border-right:1px solid var(--text-main);transform:rotate(45deg);margin-right:8px;transition:transform .3s;justify-self:end} /* 2026/9/9 「>」に */
-.news__list li:hover .news__arrow{transform:translateX(6px) rotate(45deg)}
+.news__link:hover .news__arrow{transform:translateX(6px) rotate(45deg)}
 @media(max-width:1023px){
   .news__inner{grid-template-columns:1fr}
   .news__side,.news__list,.news__more{grid-column:1;grid-row:auto}
   .news__more{margin-top:8px;display:flex;justify-content:center}
   .news__more .btn{width:250px}
-  .news__list li{grid-template-columns:1fr auto;gap:6px 12px}
+  .news__link{grid-template-columns:1fr auto;gap:6px 12px}
   .news__cat{grid-row:2;justify-self:start}
   .news__title{grid-column:1/-1}
 }
@@ -684,8 +722,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <a href="#people">先輩の声</a>
       </nav>
       <a class="header__entry" href="#business" data-cta="header-business">事業・職種から探す</a>
+      <button class="header__menu-btn" type="button" aria-expanded="false" aria-controls="sp-menu" aria-label="メニューを開く" data-acc="sp-menu"><span></span><span></span></button>
     </div>
   </div>
+  <!-- SPメニュー（1023px以下） -->
+  <nav class="sp-menu" id="sp-menu" aria-label="メニュー">
+    <div class="sp-menu__nav">
+      <a href="#news">お知らせ</a>
+      <a href="#about">私たちについて</a>
+      <a href="#work">働き方・環境</a>
+      <a href="#people">先輩の声</a>
+    </div>
+    <div class="sp-menu__cta">
+      <a class="btn" href="#business" data-cta="spmenu-business">事業・職種から探す<span class="btn__arrow" aria-hidden="true"></span></a>
+      <a class="btn" href="#entry" data-cta="spmenu-entry">採用のお問い合わせ<span class="btn__arrow" aria-hidden="true"></span></a>
+    </div>
+  </nav>
 </header>
 <!-- /Section: header -->
 
@@ -806,9 +858,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <h2 class="section-title">お知らせ</h2>
     </div>
     <ul class="news__list">
-      <li><time class="news__date" datetime="2026-10-01">2026.10.01</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">アドバンスグループ採用サイトを公開しました</a><span class="news__arrow" aria-hidden="true"></span></li>
-      <li><time class="news__date" datetime="2026-09-20">2026.09.20</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">きらり事業部の採用情報を移設しました</a><span class="news__arrow" aria-hidden="true"></span></li>
-      <li><time class="news__date" datetime="2026-09-10">2026.09.10</time><span class="news__cat">スタッフインタビュー</span><a class="news__title" href="#">"みかん事件"が、本当の介護の道へ導いてくれました。</a><span class="news__arrow" aria-hidden="true"></span></li>
+      <li><a class="news__link" href="#"><time class="news__date" datetime="2026-10-01">2026.10.01</time><span class="news__cat">お知らせ</span><span class="news__title">アドバンスグループ採用サイトを公開しました</span><span class="news__arrow" aria-hidden="true"></span></a></li>
+      <li><a class="news__link" href="#"><time class="news__date" datetime="2026-09-20">2026.09.20</time><span class="news__cat">お知らせ</span><span class="news__title">きらり事業部の採用情報を移設しました</span><span class="news__arrow" aria-hidden="true"></span></a></li>
+      <li><a class="news__link" href="#"><time class="news__date" datetime="2026-09-10">2026.09.10</time><span class="news__cat">スタッフインタビュー</span><span class="news__title">"みかん事件"が、本当の介護の道へ導いてくれました。</span><span class="news__arrow" aria-hidden="true"></span></a></li>
     </ul>
     <div class="news__more"><a class="btn btn--line" href="#" data-cta="news-list">一覧へ<span class="btn__arrow" aria-hidden="true"></span></a></div>
   </div>
@@ -1084,6 +1136,21 @@ document.querySelectorAll('img').forEach(im=>{im.addEventListener('error',()=>fb
 
 // ヘッダー（§17 initHeaderScroll 相当）
 const header=document.getElementById('header');
+
+// SPメニュー（§6／§17）：<button> + aria-expanded。リンク押下・×・Esc で閉じる
+const menuBtn=document.querySelector('.header__menu-btn');
+const spMenu=document.getElementById('sp-menu');
+const setMenu=open=>{
+  menuBtn.setAttribute('aria-expanded',String(open));
+  menuBtn.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
+  spMenu.classList.toggle('is-open',open);
+  document.body.classList.toggle('is-menu-open',open);
+  header.classList.toggle('is-menu-open',open);
+};
+menuBtn.addEventListener('click',()=>setMenu(menuBtn.getAttribute('aria-expanded')!=='true'));
+spMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+addEventListener('resize',()=>{if(innerWidth>1023)setMenu(false)});
 const onScroll=()=>header.classList.toggle('is-scrolled',window.scrollY>60);
 onScroll();addEventListener('scroll',onScroll,{passive:true});
 
