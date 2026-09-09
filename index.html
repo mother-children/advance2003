@@ -10,9 +10,49 @@
 <meta name="description" content="アドバンスグループの採用サイト。広島県府中市・福山市で介護・児童療育（きらり）・保育・人材支援（KOTONOHA）を展開。個性が活きる様々なかたちの幸せを、一緒に創る仲間を募集しています。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
 <!--
   アドバンスグループ 採用サイト TOP デザイン
+  v0.28 2026/9/9  先輩の声の展開部にサブ写真（企業サイト /recruit/ の ul.recruit_ppl_list_pic）を追加
+                 福島：recruit_c2（1枚）／佐藤：recruit_a2・a3・a4（3枚）／長見：recruit_b2・b3（2枚・中央揃え）
+  v0.27 2026/9/9  よくあるご質問セクションの背景を --bg-sub に（上余白も追加）
+                 フッターの見出し（.footer__heading）を削除
+                 先輩の声：各行を <button> の開閉トリガーにし、クリックで全文をアコーディオン表示（§6 準拠、aria-expanded / data-acc）
+                 全文は企業サイト /recruit/ の掲載文をそのまま転記（誤字と思われる箇所も原文どおり。TODO参照）
+  v0.26 2026/9/9  フッターのリンク順を変更（中央：事業・職種から探す／お知らせ／私たちについて／働き方・環境、右：よくあるご質問／プライバシーポリシー／企業サイト）
+                 フッター下部の版情報テキストを削除（版履歴は本コメントで管理）
+                 外部リンクアイコン（SVGシンボル #icon-external）を追加し、企業サイトへのリンク3箇所に設置
+                 （.entry__tel-note a の右／.entry__job の矢印を置換／「企業サイトで詳しく」ボタンの矢印を置換）
+  v0.25 2026/9/9  ロゴと RECRUIT の間の区切り線を削除（ヘッダー・フッター）
+                 .header__entry の文字サイズを --fs-btn に
+                 ボタン文言：働き方・環境へ／よくあるご質問へ／一覧へ（お知らせ）
+  v0.24 2026/9/9  .entry__block のスライドインを修正（inset:0 と left:-100% が併存し、常時オーバーレイが掛かっていた）
+                 ヘッダーナビの「先輩の声」を削除
+                 .entry__job-arrow に hover で右へ20px動く挙動を追加（.btn__arrow と同じ）
+                 .header__entry：文言「採用のお問い合わせ」、背景 --brand-dark、hover は暗いオーバーレイのスライドイン
+                 .entry__block 1枚目：「働き方・環境」「給与・休暇・研修について」、リンク先 #work
+  v0.23 2026/9/9  ロゴ横に「RECRUIT」をロゴ表記として横並び（ヘッダー・フッター）。旧「採用サイト」（ロゴ下）
+                 ※英字表記のためロゴのロックアップ（VI）として扱う。§1-2 #1/#10 の観点で要承認記録
+                 .header__entry / .entry__block の hover を左からの塗り替わりに（.btn と同じスライドイン方式）
+                 .entry__job-arrow を .entry__block-arrow::after と同じ skew のL字矢印に
+                 メッセージ（concept）内の「私たちについて」ボタンを削除（直下に「私たちについて」セクションがあるため）
+                 文言変更：お知らせ一覧へ／私たちについて／働き方・環境／よくあるご質問／募集要項／採用のお問い合わせ。ヘッダーナビの「企業サイト」を削除
+  v0.22 2026/9/9  先輩の声：行はリンクではないため .voice__arrow を削除。「インタビューをもっと見る」（.people__btns）も削除
+                 事業タグ（.voice__tag）を写真上から引用文の上へ移動し 12px に（§2-1 逸脱。.news__cat と同じ「カテゴリタグ 12px」の承認範囲として扱う）
+                 .header__entry-arrow / .entry__block-arrow の矢印を円の上下左右中央に固定（hover の移動を廃止）
+  v0.21 2026/9/9  .btn の文字サイズを PC 15px に（--fs-btn。§2-1 逸脱。2026/9/9 承認「§2-1 を承認（.btn PC 15px）」）
+                 .btn--line の左パディングを 10px → 16px
+                 .biz__card のパディングを 40px 44px → 48px（PC）
+                 お知らせのボタンが側柱（190px）からはみ出していたため .btn--line に変更し幅100%に
+  v0.20 2026/9/9  事業カード内のボタンを「詳しく見る」に統一し、下線だけのデザイン（.btn--line。企業サイトの .business_link 相当）に
+                 ヘッダーの .header__entry を左右丸（pill）、.entry__block を角丸6pxに
+                 .header__entry / .entry__block の丸の中の矢印を .btn__arrow と同じ形（skew の L字）に。円に収まるサイズに縮小
+  v0.19 2026/9/9  ボタン（.btn）のデザインを企業サイト advance2003.com の .staffblog_button に合わせた
+                 ・1px枠・透明背景・最小幅255px・高さ60px。hover で黒い面が左からスライドインし文字が白に（.3s）
+                 ・矢印は同サイトの .arrow::after（20×4px の L 字を skew(55deg)）。hover で右に20px移動し白に
+                 ・.btn--outline の差分スタイルを廃止（全ボタン同一デザイン）
+                 .news__arrow を同じ .arrow::after の矢印に変更（hover で右に20px）
+                 .news__cat を 12px に（§2-1 逸脱。2026/9/9 承認済み「§2-1 を承認（.news__cat 12px）」）
   v0.18 2026/9/8 ヒーローの重ね写真2枚（.hero__mini 右上／.hero__sub 左下）を v0.8 の状態で復元（角丸なし・白フチ9px）
                  メイン写真のクロスフェードは維持。重ね写真（recruit_b2／recruit_c1）と重複しないよう、
                  クロスフェードの2・3枚目を recruit_a4／recruit_c2 に変更（働く環境セクションと重複。実写差し替えで解消）
@@ -77,9 +117,11 @@
   ・KOTONOHA の運営法人表記を要確認
   ・キラリワークス：運営法人（公式サイトは「有限会社アドバンスグループ」表記）・主な職種（現在は空欄）・紹介文（公式サイトを基に作成）・拠点の事業所名を要確認
   ・キラリワークスの写真（HTML内に埋め込み。元：DSC04350.JPG）：利用者が写っているため掲載許諾を確認。工程③では画像ファイルとして切り出す
-  ・handover.md「共通ルールを上書きする点」に §2-1 の逸脱（.biz__corp / .biz__title small / .biz__meta：事業カード内の補足情報 PC14px・SP13px）を記載すること（§1-4 手順2）
+  ・handover.md「共通ルールを上書きする点」に §2-1 の逸脱（.biz__corp / .biz__title small / .biz__meta：事業カード内の補足情報 PC14px・SP13px ／ .news__cat / .voice__tag：12px ／ .btn：PC 15px）を記載すること（§1-4 手順2）
   ・エントリー下部の「求人を見る」3件にキラリワークスを追加するか要判断（追加していない）
   ・働く環境3項目（給与評価／休暇日数／研修の現行状況）は裏取り後に確定
+  ・先輩の声の全文（企業サイト /recruit/ より転記）に誤字と思われる箇所あり。原文どおり掲載中。確認のうえ修正する
+    「導いてくれてました」「できるようにりました」「就職しよう思いました」
   ・FAQ文言は各事業で確認。回答が短い（1〜2行）項目は開閉UIにする必要があるか要検討（§6）
   ・書体：見出し・サブコピーの明朝化（§2-4）は未適用。コーポレートのトンマナ（ゴシック）を維持するか要判断 → 稲田
 
@@ -129,6 +171,7 @@
   --fs-subcopy:clamp(20px,2.4vw,28px);
   --fs-h1:clamp(26px,3.1vw,44px);
   --fs-num:clamp(28px,3vw,36px);
+  --fs-btn:clamp(14px,1.5vw,15px);      /* §2-1 逸脱（承認済み 2026/9/9）。企業サイトのボタン 1.5rem＝15px に合わせる。SPは14px */
   --fs-biz-note:clamp(13px,1.3vw,14px); /* §2-1 逸脱（承認済み）。事業カード内の補足情報のみ。他で使わない */
 
   /* 余白（§3 clamp で可変。PC/SP別の固定値を書かない） */
@@ -137,7 +180,7 @@
   --space-gap:clamp(24px,3vw,48px);
   --space-inner:clamp(22px,3.6vw,56px);
 
-  --radius:6px;   /* 2026/9/8 8px→6px。使用は .news__inner / .biz__card / .people__card の3箇所のみ。他は角丸なし */
+  --radius:6px;   /* 2026/9/8 8px→6px。使用は .news__inner / .biz__card / .people__card / .entry__block。ヘッダーの .header__entry は pill（999px）。他は角丸なし */
   --ease:cubic-bezier(.22,1,.36,1);
 }
 
@@ -178,19 +221,31 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .section-title{font-size:var(--fs-subcopy);font-weight:500;line-height:1.9;letter-spacing:.08em;margin-top:.4em}
 
 
-/* ボタン */
-.btn{display:inline-flex;align-items:center;gap:14px;background:var(--brand-main);color:var(--white);
-  padding:12px 14px 12px 28px;font-size:var(--fs-body);letter-spacing:.08em;font-weight:500;line-height:1.6;
-  transition:background .4s var(--ease),transform .4s var(--ease)}
-.btn__arrow{width:26px;height:26px;border-radius:50%;background:var(--white);color:var(--brand-main);display:grid;place-items:center;font-size:var(--fs-body);transition:transform .4s var(--ease);flex:none}
-.btn:hover{background:var(--brand-dark);transform:translateY(-2px)}
-.btn:hover .btn__arrow{transform:translateX(3px)}
-.btn--outline{background:transparent;color:var(--text-main);border:1px solid var(--border-light)}
-.btn--outline .btn__arrow{background:var(--text-main);color:var(--white)}
-.btn--outline:hover{background:var(--text-main);color:var(--white)}
+/* ボタン（2026/9/9 企業サイト advance2003.com の .staffblog_button ＋ .arrow::after を移植）
+   色は #000/#333/black → var(--text-main)、white → var(--white) に置き換え。寸法・動きは元のまま */
+.btn{box-sizing:border-box;min-width:255px;height:60px;padding:0 20px;border:1px solid var(--text-main);
+  display:inline-flex;align-items:center;justify-content:center;position:relative;z-index:2;overflow:hidden;
+  background-color:transparent;color:var(--text-main);font-size:var(--fs-btn);letter-spacing:.05em;font-weight:400;line-height:1.6; /* 2026/9/9 §2-1 逸脱。旧 var(--fs-body) */
+  transition:all .3s}
+/* hover で左から黒い面がスライドイン */
+.btn::after{content:"";display:block;position:absolute;z-index:-1;left:-100%;top:0;width:100%;height:100%;box-sizing:border-box;transition:all .3s}
+.btn:hover{color:var(--white)}
+.btn:hover::after{left:0;top:0;background-color:var(--text-main)}
+/* 矢印：企業サイトの .arrow::after（L字を skew して細長い矢印に見せる） */
+.btn__arrow{display:inline-block;width:20px;height:4px;border-bottom:1px solid var(--text-main);border-right:1px solid var(--text-main);
+  transform:skew(55deg);margin-left:15px;margin-right:20px;margin-bottom:3px;transition:.3s;flex:none}
+.btn:hover .btn__arrow{transform:skew(55deg) translateX(20px);border-bottom-color:var(--white);border-right-color:var(--white)}
+/* .btn--outline は v0.19 で .btn と同一デザインになったため差分なし（クラスは互換のため残置） */
+/* 下線だけのボタン（2026/9/9 企業サイトの .business_link 相当）。事業カード内で使用。hover のスライドインは .btn と共通 */
+.btn--line{min-width:0;width:250px;height:55px;padding:0 0 0 16px;border:0;border-bottom:1px solid var(--text-main);justify-content:space-between}
+.btn--line .btn__arrow{margin-left:0;margin-right:45px}
 .btn-group{display:flex;gap:14px;flex-wrap:wrap}
 
 .rule{height:1px;background:var(--border-light)}
+
+/* 外部リンクアイコン（2026/9/9）。色は currentColor、サイズは置き場所ごとに指定 */
+.icon-ext{width:14px;height:14px;display:inline-block;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn .icon-ext{margin-left:15px;margin-right:20px;width:15px;height:15px;transition:.3s}
 
 /* フェードイン（§17 fade-up）。連番ディレイは使わない（§18-2） */
 .fade-up{opacity:0;transform:translateY(26px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
@@ -208,17 +263,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .header{position:fixed;inset:0 0 auto 0;z-index:70;padding:22px 0;transition:background .4s,padding .4s}
 .header.is-scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:12px 0;box-shadow:0 1px 0 var(--border-light)}
 .header__inner{display:flex;align-items:flex-start;justify-content:space-between}
-.header__logo{display:block}
+.header__logo{display:flex;align-items:center;gap:14px}
 .header__logo .logo-svg{width:180px;height:auto;display:block;color:var(--text-main)}
-.header__logo-sub{display:block;font-size:var(--fs-body);letter-spacing:.12em;color:var(--text-sub);margin-top:6px;line-height:1.5}
+/* 「RECRUIT」はロゴのロックアップ（採用サイトのサイト名）として英字を使用。2026/9/9 旧「採用サイト」（ロゴ下） */
+.logo-recruit{font-family:var(--font-num);font-weight:700;font-size:clamp(16px,1.5vw,20px);letter-spacing:.02em;color:var(--text-main);line-height:1}
 .header__right{display:flex;align-items:center;gap:26px}
 .header__nav{display:flex;align-items:center;gap:24px;font-size:var(--fs-body);letter-spacing:.06em}
 .header__nav a{position:relative;padding:4px 0}
 .header__nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--text-main);transition:right .4s var(--ease)}
 .header__nav a:hover::after{right:0}
-.header__entry{display:inline-flex;align-items:center;gap:12px;background:var(--brand-main);color:var(--white);padding:10px 12px 10px 22px;font-size:var(--fs-body);letter-spacing:.08em;font-weight:500;line-height:1.6}
-.header__entry .btn__arrow{width:22px;height:22px}
-@media(max-width:1023px){.header__nav{display:none}.header__logo .logo-svg{width:150px}}
+.header__entry{display:inline-flex;align-items:center;gap:12px;background:var(--brand-dark);color:var(--white);border-radius:999px;position:relative;z-index:1;overflow:hidden;padding:10px 12px 10px 22px;font-size:var(--fs-btn);letter-spacing:.08em;font-weight:500;line-height:1.6} /* 2026/9/9 --fs-btn（§2-1 承認済み）に */
+/* hover：暗いオーバーレイが左からスライドイン（.entry__block と同じ）2026/9/9 */
+.header__entry::after{content:"";position:absolute;z-index:-1;left:-100%;top:0;width:100%;height:100%;background:rgba(var(--overlay-rgb),.22);transition:left .3s}
+.header__entry:hover::after{left:0}
+/* 丸の中の矢印は .btn__arrow と同形（L字を skew）。円に収まるよう縮小。2026/9/9 */
+.header__entry-arrow{width:26px;height:26px;border-radius:50%;background:var(--white);color:var(--brand-dark);display:grid;place-items:center;flex:none;overflow:hidden;position:relative;z-index:1}
+/* skew で描線が右に寄るぶん translate で戻し、円の中央に見えるように補正。hover では動かさない（2026/9/9） */
+.header__entry-arrow::after{content:"";display:block;width:10px;height:3px;border-bottom:1px solid currentColor;border-right:1px solid currentColor;transform:translate(-1px,-1px) skew(55deg)}
+@media(max-width:1023px){.header__nav{display:none}.header__logo .logo-svg{width:150px}.header__logo{gap:10px}}
 
 /* =========================================================
    Section: hero
@@ -299,7 +361,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .concept__head .section-label{writing-mode:vertical-rl;letter-spacing:.16em}
 .concept__title{writing-mode:vertical-rl;text-orientation:mixed;font-size:var(--fs-subcopy);font-weight:500;letter-spacing:.14em;line-height:2.2;margin:0}
 .concept__text{align-self:center;width:min(var(--container-text),100%)} /* 本文の箱（§3） */
-.concept__text .btn{margin-top:1.6em}
 @media(max-width:1023px){
   .concept__inner{grid-template-columns:1fr}
   .concept__title{writing-mode:horizontal-tb;letter-spacing:.08em}
@@ -313,15 +374,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .news{position:relative;padding:var(--space-section) 0} /* 2026/9/8 旧 0 0 var(--space-section)。事業セクションに背景色が付いたため上余白を追加 */
 .news__inner{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:var(--space-inner);display:grid;grid-template-columns:190px 1fr;gap:var(--space-gap)}
 .news__side .section-title{margin-top:0}
-.news__side .btn{margin-top:22px}
+.news__side .btn{margin-top:22px;width:100%} /* 2026/9/9 側柱190pxに収めるため .btn--line＋幅100% */
 .news__list li{display:grid;grid-template-columns:auto auto 1fr auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--border-light)}
 .news__list li:first-child{padding-top:0}
 .news__list li:last-child{border-bottom:0;padding-bottom:0}
 .news__date{font-family:var(--font-num);font-size:var(--fs-body);letter-spacing:.06em;color:var(--text-sub)}
-.news__cat{font-size:var(--fs-body);letter-spacing:.06em;padding:3px 12px;border:1px solid var(--border-light);text-align:center;color:var(--text-sub);line-height:1.8;white-space:nowrap}
+.news__cat{font-size:12px; /* 2026/9/9 §2-1 逸脱（最小16px/14px）。指示者承認済み。旧 var(--fs-body) */letter-spacing:.06em;padding:3px 12px;border:1px solid var(--border-light);text-align:center;color:var(--text-sub);line-height:1.8;white-space:nowrap}
 .news__title{font-size:var(--fs-body);line-height:1.9}
-.news__arrow{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-light);display:grid;place-items:center;font-size:var(--fs-body);color:var(--text-sub);transition:background .35s,color .35s,border-color .35s}
-.news__list li:hover .news__arrow{background:var(--brand-main);border-color:var(--brand-main);color:var(--white)}
+/* 2026/9/9 企業サイトの .arrow::after と同じ矢印。hover で右に20px */
+.news__arrow{display:inline-block;width:20px;height:4px;border-bottom:1px solid var(--text-main);border-right:1px solid var(--text-main);transform:skew(55deg);margin-right:20px;margin-bottom:3px;transition:.3s;justify-self:end}
+.news__list li:hover .news__arrow{transform:skew(55deg) translateX(20px)}
 @media(max-width:1023px){
   .news__inner{grid-template-columns:1fr}
   .news__list li{grid-template-columns:1fr auto;gap:6px 12px}
@@ -384,7 +446,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .biz:last-child{margin-bottom:0}
 .biz .photo{aspect-ratio:16/11}
 /* カードを写真に重ねる演出。負マージンは意図的（§3） */
-.biz__card{background:var(--white);border-radius:var(--radius);padding:40px 44px;margin-left:-70px;position:relative;z-index:2;box-shadow:0 24px 60px -40px var(--card-shadow)}
+.biz__card{background:var(--white);border-radius:var(--radius);padding:48px;margin-left:-70px;position:relative;z-index:2;box-shadow:0 24px 60px -40px var(--card-shadow)}
 .biz--rev{grid-template-columns:.85fr 1.15fr}
 .biz--rev .photo{order:2}
 .biz--rev .biz__card{order:1;margin-left:0;margin-right:-70px}
@@ -442,32 +504,47 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .people__side{display:flex;gap:22px;align-items:flex-start}
 .people__side .section-label{writing-mode:vertical-rl;letter-spacing:.16em;padding-top:4px}
 .people__title{writing-mode:vertical-rl;text-orientation:mixed;font-size:var(--fs-subcopy);font-weight:500;letter-spacing:.16em;line-height:1.7;margin:0}
-.voice li{display:grid;grid-template-columns:120px 1fr auto;gap:26px;align-items:center;padding:22px 0;border-bottom:1px solid var(--border-light)}
-.voice li:first-child{padding-top:0}
-.voice li:last-child{border-bottom:0;padding-bottom:0}
-.voice__thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg-sub)}
-.voice__thumb img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
-.voice li:hover .voice__thumb img{transform:scale(1.06)}
-/* 事業タグ。2026/9/8 .biz__bar と同じ理由で1色に統一 */
-.voice__tag{white-space:nowrap;position:absolute;left:0;bottom:0;font-size:var(--fs-body);letter-spacing:.06em;color:var(--white);padding:2px 8px;line-height:1.8;background:var(--brand-main)}
-.voice__quote{font-size:var(--fs-lead);font-weight:500;line-height:1.8;letter-spacing:.04em}
-.voice__who{font-size:var(--fs-body);color:var(--text-sub);margin-top:8px;line-height:1.9}
+/* 2026/9/9 各行を開閉トリガー（<button>）にし、全文をアコーディオン表示（§6） */
+.voice li{border-bottom:1px solid var(--border-light)}
+.voice li:last-child{border-bottom:0}
+.voice__toggle{width:100%;text-align:left;display:grid;grid-template-columns:120px 1fr 22px;gap:26px;align-items:center;padding:22px 0}
+.voice li:first-child .voice__toggle{padding-top:0}
+.voice li:last-child .voice__toggle{padding-bottom:0}
+.voice li:last-child .voice__body.is-open{padding-bottom:0}
+.voice__pm{width:22px;height:22px;position:relative}
+.voice__pm::before,.voice__pm::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:1px;background:var(--text-main);transform:translate(-50%,-50%);transition:transform .4s var(--ease)}
+.voice__pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.voice__toggle[aria-expanded="true"] .voice__pm::after{transform:translate(-50%,-50%) rotate(0)}
+.voice__body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.voice__body > div{overflow:hidden}
+.voice__body.is-open{grid-template-rows:1fr}
+.voice__body-inner{padding:4px 48px 30px 146px} /* 左は写真幅120＋gap26 に揃える */
+/* サブ写真：企業サイトの ul.recruit_ppl_list_pic（3列・30%幅）に倣う。2枚のときは中央揃え */
+.voice__pics{display:flex;flex-wrap:wrap;gap:24px;margin-top:28px}
+.voice__pics li{width:calc((100% - 48px) / 3)}
+.voice__pics--center{justify-content:center}
+.voice__pics img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--bg-sub)}
+.voice__thumb{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg-sub)}
+.voice__thumb img{width:100%;height:100%;object-fit:cover}
+/* 事業タグ。2026/9/9 写真上から引用文の上へ。12px は §2-1 逸脱（.news__cat と同じ承認範囲：カテゴリタグ） */
+.voice__tag{display:inline-block;font-size:12px;letter-spacing:.08em;color:var(--white);padding:2px 10px;line-height:1.7;background:var(--brand-main);margin-bottom:8px}
+.voice__quote{display:block;font-size:var(--fs-lead);font-weight:500;line-height:1.8;letter-spacing:.04em}
+.voice__who{display:block;font-size:var(--fs-body);color:var(--text-sub);margin-top:8px;line-height:1.9}
 .voice__who b{color:var(--text-main);font-weight:500;letter-spacing:.06em;margin-right:8px}
-.voice__arrow{width:44px;height:44px;border-radius:50%;background:var(--brand-main);color:var(--white);display:grid;place-items:center;font-size:var(--fs-body);flex:none;transition:transform .4s var(--ease)}
-.voice li:hover .voice__arrow{transform:translateX(4px)}
-.people__btns{margin-top:38px;display:flex;justify-content:flex-end}
 @media(max-width:1023px){
   .people__card{grid-template-columns:1fr}
   .people__side{flex-direction:column;gap:14px}
   .people__side .section-label,.people__title{writing-mode:horizontal-tb;letter-spacing:.1em}
-  .voice li{grid-template-columns:108px 1fr;gap:14px} /* 事業タグ6文字が折り返さない幅 */
-  .voice__arrow{display:none}
+  .voice__toggle{grid-template-columns:108px 1fr 22px;gap:14px}
+  .voice__body-inner{padding:4px 0 24px 0}
+  .voice__pics{gap:12px}
+  .voice__pics li{width:calc((100% - 12px) / 2)}
 }
 
 /* =========================================================
    Section: faq
    ========================================================= */
-.faq{position:relative;padding:0 0 var(--space-section)}
+.faq{position:relative;padding:var(--space-section) 0;background:var(--bg-sub)} /* 2026/9/9 背景色を追加。旧 0 0 var(--space-section)・白 */
 .faq__inner{display:grid;grid-template-columns:.8fr 1.5fr;gap:var(--space-block);align-items:start}
 .faq__side .text-body{margin-top:20px}
 .faq__side .btn-group{margin-top:26px}
@@ -501,30 +578,34 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .entry__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(var(--overlay-rgb),.42),rgba(var(--overlay-rgb),.74))}
 .entry__inner{position:relative;z-index:2;padding-bottom:var(--space-section)}
 .entry__blocks{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin-inline:auto}
-.entry__block{position:relative;padding:52px 44px 60px;color:var(--white);display:block;transition:transform .45s var(--ease);background:var(--brand-main)}
+.entry__block{position:relative;padding:52px 44px 60px;color:var(--white);display:block;border-radius:var(--radius);overflow:hidden;background:var(--brand-main)} /* 2026/9/9 角丸6px */
+/* hover：暗い面が左からスライドイン（.btn と同方式）。2枚とも同じオーバーレイで統一。2026/9/9 旧 translateY(-6px) */
+.entry__block::after{content:"";position:absolute;top:0;bottom:0;left:-100%;width:100%;background:rgba(var(--overlay-rgb),.22);transition:left .3s;z-index:0} /* 2026/9/9 inset:0 → top/bottom/width に修正 */
+.entry__block:hover::after{left:0}
+.entry__block > *{position:relative;z-index:1}
 /* 2枚目を段差で下げる演出（§3）。色は同系の濃淡（§1-2 #8：別色で塗り分けない） */
 .entry__block:nth-child(2){background:var(--brand-dark);transform:translateY(46px)}
-.entry__block:hover{transform:translateY(-6px)}
-.entry__block:nth-child(2):hover{transform:translateY(40px)}
 .entry__block-title{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:.08em;line-height:1.5}
 .entry__block-sub{display:block;margin-top:10px;font-size:var(--fs-body);color:var(--on-photo);letter-spacing:.06em}
-.entry__block .btn__arrow{position:absolute;right:34px;bottom:34px;width:44px;height:44px}
+.entry__block-arrow{position:absolute;right:34px;bottom:34px;width:44px;height:44px;border-radius:50%;background:var(--white);color:var(--brand-main);display:grid;place-items:center;overflow:hidden}
+.entry__block-arrow::after{content:"";display:block;width:16px;height:4px;border-bottom:1px solid currentColor;border-right:1px solid currentColor;transform:translate(-1.5px,-1.5px) skew(55deg)}
 .entry__jobs{max-width:1000px;margin:var(--space-section) auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.3);overflow:hidden}
 .entry__job{background:rgba(255,255,255,.96);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;transition:background .35s;font-size:var(--fs-body);font-weight:500;letter-spacing:.04em}
 .entry__job:hover{background:var(--white)}
-.entry__job-arrow{width:30px;height:1px;background:var(--brand-main);position:relative;flex:none}
-.entry__job-arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid var(--brand-main);border-right:1px solid var(--brand-main);transform:rotate(45deg)}
+/* 2026/9/9 求人リンクは外部（Indeed PLUS）のため矢印を外部アイコンに置換 */
+.entry__job .icon-ext{color:var(--brand-main);width:16px;height:16px;margin-right:4px;transition:transform .3s}
+.entry__job:hover .icon-ext{transform:translate(2px,-2px)}
 .entry__tel{text-align:center;margin-top:var(--space-block);color:var(--white)}
 .entry__tel-label{font-size:var(--fs-body);letter-spacing:.14em;color:var(--on-photo)}
 .entry__tel-num{font-family:var(--font-num);font-size:clamp(30px,3.8vw,48px);font-weight:300;letter-spacing:.04em;line-height:1.3;margin-top:8px}
 .entry__tel-hours{font-size:var(--fs-body);color:var(--on-photo);margin-top:2px}
 .entry__tel-note{font-size:var(--fs-body);color:var(--on-dark-text);margin-top:22px}
 .entry__tel-note a{border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:1px}
+.entry__tel-note .icon-ext{margin-left:4px}
 @media(max-width:1023px){
   .entry__bg{top:110px}
   .entry__blocks{grid-template-columns:1fr;gap:14px}
   .entry__block:nth-child(2){transform:none}
-  .entry__block:nth-child(2):hover{transform:translateY(-6px)}
   .entry__block{padding:32px 24px 46px}
   .entry__jobs{grid-template-columns:1fr;margin-top:var(--space-block)}
 }
@@ -533,15 +614,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    FOOTER
    ========================================================= */
 .footer{position:relative;background:var(--text-main);color:var(--white);padding:56px 0 26px}
-.footer__top{text-align:center;padding-bottom:40px;border-bottom:1px solid var(--on-dark-line)}
-.footer__logo{display:block}
-.footer__logo .logo-svg{width:190px;height:auto;margin:0 auto;display:block}
-.footer__logo .logo-svg{color:var(--white)} /* ロゴ文字は currentColor。ドット3色はロゴ固有色のまま */
-.footer__logo-sub{font-size:var(--fs-body);letter-spacing:.12em;color:var(--on-dark-text);margin-top:10px}
+.footer__top{padding-bottom:40px;border-bottom:1px solid var(--on-dark-line)}
+.footer__logo{display:flex;align-items:center;justify-content:center;gap:14px} /* 2026/9/9 ロゴと RECRUIT を横並び */
+.footer__logo .logo-svg{width:190px;height:auto;display:block;color:var(--white)} /* ロゴ文字は currentColor。ドット3色はロゴ固有色のまま */
+.footer__logo .logo-recruit{color:var(--white)}
 .footer__cols{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px;padding:40px 0}
-.footer__heading{font-size:var(--fs-body);letter-spacing:.1em;color:var(--on-dark-text);margin-bottom:12px;font-weight:500}
 .footer__cols li{font-size:var(--fs-body);line-height:2.2;color:var(--on-photo)}
 .footer__cols li a:hover{color:var(--white);opacity:.7}
+.footer__cols .icon-ext{margin-left:6px;width:13px;height:13px}
 .footer address{font-style:normal;font-size:var(--fs-body);line-height:2.1;color:var(--on-dark-text)}
 /* コピーライト・版情報：§2-1 例外（記号的要素） */
 .footer__bottom{border-top:1px solid var(--on-dark-line);padding-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.5)}
@@ -557,18 +637,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <div class="wrap wrap--wide header__inner">
     <a href="#top" class="header__logo" aria-label="アドバンスグループ 採用サイト トップ">
       <svg class="logo-svg" role="img" aria-label="ADVANCE GROUP" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 32"><use href="#logo-advance"/></svg>
-      <span class="header__logo-sub">採用サイト</span>
+      <span class="logo-recruit header__logo-sub">RECRUIT</span>
     </a>
     <div class="header__right">
       <nav class="header__nav" aria-label="グローバルナビ">
         <a href="#business">事業・職種から探す</a>
         <a href="#news">お知らせ</a>
         <a href="#about">私たちについて</a>
-        <a href="#work">働く環境</a>
-        <a href="#people">先輩の声</a>
-        <a href="https://advance2003.com/" target="_blank" rel="noopener">企業サイト</a>
+        <a href="#work">働き方・環境</a>
       </nav>
-      <a class="header__entry" href="#entry" data-cta="header-entry">エントリー<span class="btn__arrow">→</span></a>
+      <a class="header__entry" href="#entry" data-cta="header-entry">採用のお問い合わせ<span class="header__entry-arrow" aria-hidden="true"></span></a>
     </div>
   </div>
 </header>
@@ -636,7 +714,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <dt>主な職種</dt><dd>介護職／看護職／ケアマネジャー／保育士／本部スタッフ など</dd>
           <dt>拠点</dt><dd>元町ふれあいセンター／府中ふれあいホームうかい／ふれあいの家／ここから／いまから／ここから保育園</dd>
         </dl>
-        <div class="biz__act"><a class="btn" href="#" data-cta="biz-advance">募集中の求人（Indeed PLUS）<span class="btn__arrow">↗</span></a></div>
+        <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-advance">詳しく見る<span class="btn__arrow" aria-hidden="true"></span></a></div>
       </div>
     </article>
 
@@ -650,7 +728,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <dt>主な職種</dt><dd>保育士／児童指導員／作業療法士・理学療法士 など</dd>
           <dt>拠点</dt><dd>きらり・きらりぷらす・あそLabo（府中・福山）</dd>
         </dl>
-        <div class="biz__act"><a class="btn" href="#" data-cta="biz-kirari">きらりで働く<span class="btn__arrow">→</span></a></div>
+        <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-kirari">詳しく見る<span class="btn__arrow" aria-hidden="true"></span></a></div>
       </div>
     </article>
 
@@ -666,7 +744,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <dt>主な職種</dt><dd>—</dd>
           <dt>拠点</dt><dd>福山市・府中市</dd>
         </dl>
-        <div class="biz__act"><a class="btn" href="https://kirariworks.jp/" target="_blank" rel="noopener" data-cta="biz-kirariworks">キラリワークスのサイトへ<span class="btn__arrow">↗</span></a></div>
+        <div class="biz__act"><a class="btn btn--line" href="https://kirariworks.jp/" target="_blank" rel="noopener" data-cta="biz-kirariworks">詳しく見る<span class="btn__arrow" aria-hidden="true"></span></a></div>
       </div>
     </article>
 
@@ -680,7 +758,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <dt>主な職種</dt><dd>キャリアアドバイザー／登録支援機関スタッフ など</dd>
           <dt>拠点</dt><dd>求人支援センター福山 ほか</dd>
         </dl>
-        <div class="biz__act"><a class="btn" href="#" data-cta="biz-kotonoha">募集中の求人（Indeed PLUS）<span class="btn__arrow">↗</span></a></div>
+        <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-kotonoha">詳しく見る<span class="btn__arrow" aria-hidden="true"></span></a></div>
       </div>
     </article>
   </div>
@@ -694,12 +772,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <div class="wrap news__inner fade-up">
     <div class="news__side">
       <h2 class="section-title">お知らせ</h2>
-      <a class="btn btn--outline" href="#" data-cta="news-list">お知らせ一覧<span class="btn__arrow">→</span></a>
+      <a class="btn btn--line" href="#" data-cta="news-list">一覧へ<span class="btn__arrow" aria-hidden="true"></span></a>
     </div>
     <ul class="news__list">
-      <li><time class="news__date" datetime="2026-10-01">2026.10.01</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">アドバンスグループ採用サイトを公開しました</a><span class="news__arrow">→</span></li>
-      <li><time class="news__date" datetime="2026-09-20">2026.09.20</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">きらり事業部の採用情報を移設しました</a><span class="news__arrow">→</span></li>
-      <li><time class="news__date" datetime="2026-09-10">2026.09.10</time><span class="news__cat">スタッフインタビュー</span><a class="news__title" href="#">"みかん事件"が、本当の介護の道へ導いてくれました。</a><span class="news__arrow">→</span></li>
+      <li><time class="news__date" datetime="2026-10-01">2026.10.01</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">アドバンスグループ採用サイトを公開しました</a><span class="news__arrow" aria-hidden="true"></span></li>
+      <li><time class="news__date" datetime="2026-09-20">2026.09.20</time><span class="news__cat">お知らせ</span><a class="news__title" href="#">きらり事業部の採用情報を移設しました</a><span class="news__arrow" aria-hidden="true"></span></li>
+      <li><time class="news__date" datetime="2026-09-10">2026.09.10</time><span class="news__cat">スタッフインタビュー</span><a class="news__title" href="#">"みかん事件"が、本当の介護の道へ導いてくれました。</a><span class="news__arrow" aria-hidden="true"></span></li>
     </ul>
   </div>
 </section>
@@ -718,7 +796,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="concept__text text-body fade-up">
       <p>事業は違っても、大切にしていることは一つ。利用される方、そのご家族、地域の方、そして<strong>共に働く仲間まで、関わるすべての人を笑顔にする</strong>こと。</p>
       <p>そのために私たちは、個の違いを認め、ポジティブに捉え、チャレンジすることを大切にしています。</p>
-      <a class="btn" href="#about" data-cta="concept-about">私たちについて<span class="btn__arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -772,8 +849,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </ul>
 
     <div class="btn-group about__btns fade-up">
-      <a class="btn" href="#" data-cta="about-group">グループ紹介を見る<span class="btn__arrow">→</span></a>
-      <a class="btn btn--outline" href="https://advance2003.com/vision/" target="_blank" rel="noopener" data-cta="about-corporate">企業サイトで詳しく<span class="btn__arrow">↗</span></a>
+      <a class="btn" href="#" data-cta="about-group">私たちについて<span class="btn__arrow" aria-hidden="true"></span></a>
+      <a class="btn btn--outline" href="https://advance2003.com/vision/" target="_blank" rel="noopener" data-cta="about-corporate">企業サイトで詳しく<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
     </div>
   </div>
 </section>
@@ -796,7 +873,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <li><h3>休みは、ちゃんと取る</h3><p class="text-body">子どもの急な発熱、参観日。家庭の事情での早退や休みは、チームで分担して支えます。</p></li>
         <li><h3>未経験から資格まで、グループ内で</h3><p class="text-body">介護職員初任者研修・実務者研修など、学ぶ場をグループの中で用意してきました。</p></li>
       </ul>
-      <div class="btn-group work__btns fade-up"><a class="btn btn--outline" href="#" data-cta="work-detail">働き方・環境を詳しく<span class="btn__arrow">→</span></a></div>
+      <div class="btn-group work__btns fade-up"><a class="btn btn--outline" href="#" data-cta="work-detail">働き方・環境へ<span class="btn__arrow" aria-hidden="true"></span></a></div>
     </div>
     <div class="work__photos fade-up">
       <div class="photo"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a4.jpg" alt=""></div>
@@ -818,22 +895,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div>
       <ul class="voice">
         <li>
-          <div class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_c1.jpg" alt="福島 華菜さん"><span class="voice__tag">介護事業部</span></div>
-          <div><p class="voice__quote">"みかん事件"が、本当の介護の道へ導いてくれました。</p><p class="voice__who"><b>福島 華菜</b>元町ふれあいセンター 介護福祉士（2018年入社）</p></div>
-          <span class="voice__arrow" aria-hidden="true">→</span>
+          <button class="voice__toggle" type="button" aria-expanded="false" aria-controls="voice-1" data-acc="voice-1">
+            <span class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_c1.jpg" alt="福島 華菜さん"></span>
+            <span><span class="voice__tag">介護事業部</span><span class="voice__quote">"みかん事件"が、本当の介護の道へ導いてくれました。</span><span class="voice__who"><b>福島 華菜</b>元町ふれあいセンター 介護福祉士（2018年入社）</span></span>
+            <span class="voice__pm" aria-hidden="true"></span>
+          </button>
+          <div class="voice__body" id="voice-1"><div><div class="voice__body-inner text-body"><p>私は専門学校へ通っていた頃、介護福祉士になることやめています。なぜなら、1ヶ月の介護実習中、私が思い描く介護とはかけ離れていたからです。</p><p>半ば惰性で職場を探していた私は、ゆく先々の職場見学でいわば粗探しのような見方しかできませんでした。</p><p>きっと、心が前向きではなかったからです。どうしても理想とのギャップばかり気になってしまい、自分の行き先が見つからないと思っていました。</p><p>そんな気持ちを専門学校の先生に相談をしたところ、アドバンスグループをご紹介いただき、職場を見学しました。</p><p>この場所は、私の理想でした。ここで働いてみたい。採用いただいたときはとても嬉しかったです。</p><p>"みかん事件"は私をより一層、介護の道を明るく照らしてくれる良い事件。</p><p>当時カルテの情報から利用者様を知ろうとしてしまい、自分で見聞きすることができていませんでした。</p><p>みかんが大好きな利用者様が、召し上がる時に薄皮を取って欲しい方でした。その日は薄皮がついたまま。利用者さまは喉に薄皮が張り付いてお困りのところ、私は助けを求められてどうしていいかわかりませんでしたが、背中を叩いてあげることしかできない・・・。</p><p>すると、薄皮が口からでて、利用者様のお困りを解決できたこと。この小さな自信がきっかけとなり、カルテだけでは分からない、人と人とで向き合うことの大切さを介護のお仕事のモットーとできるようにりました。</p><ul class="voice__pics"><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_c2.jpg" alt="" loading="lazy"></li></ul></div></div></div>
         </li>
         <li>
-          <div class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a1.jpg" alt="佐藤 結加さん"><span class="voice__tag">きらり事業部</span></div>
-          <div><p class="voice__quote">前職の経験を少しでも生かせる仕事がしたくて。</p><p class="voice__who"><b>佐藤 結加</b>児童発達支援管理責任者・保育士（2018年入社）</p></div>
-          <span class="voice__arrow" aria-hidden="true">→</span>
+          <button class="voice__toggle" type="button" aria-expanded="false" aria-controls="voice-2" data-acc="voice-2">
+            <span class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a1.jpg" alt="佐藤 結加さん"></span>
+            <span><span class="voice__tag">きらり事業部</span><span class="voice__quote">前職の経験を少しでも生かせる仕事がしたくて。</span><span class="voice__who"><b>佐藤 結加</b>児童発達支援管理責任者・保育士（2018年入社）</span></span>
+            <span class="voice__pm" aria-hidden="true"></span>
+          </button>
+          <div class="voice__body" id="voice-2"><div><div class="voice__body-inner text-body"><p>以前も子どもと関わる仕事をしていたのですが、前職の経験を少しでも生かした仕事ができればと思い『きらり』に就職しよう思いました。</p><p>仕事は子どもの支援から事務作業まで様々ですがスタッフで分担しながら行います。お互い助け合いながら仕事ができるので、家に持ち帰るなどの仕事もなく、休日は休日としてリフレッシュできます。</p><p>また、自分の子どもが小さいので、体調不良などで急にお迎えに行かなくてはならない時でも、早退させてもらえたり、参観日などの園の行事でも、休みを取らせてもらえるのでとても助かっています。</p><p>スタッフの皆さんも楽しいことが大好きで、休憩時間にクイズ大会やカードゲームをすることも楽しみの一つです☆</p><ul class="voice__pics"><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a2.jpg" alt="" loading="lazy"></li><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a3.jpg" alt="" loading="lazy"></li><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_a4.jpg" alt="" loading="lazy"></li></ul></div></div></div>
         </li>
         <li>
-          <div class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_b1.jpg" alt="長見 祐希さん"><span class="voice__tag">人材支援</span></div>
-          <div><p class="voice__quote">いいご縁に巡り合えました。</p><p class="voice__who"><b>長見 祐希</b>職業紹介事業部 営業（2020年入社）</p></div>
-          <span class="voice__arrow" aria-hidden="true">→</span>
+          <button class="voice__toggle" type="button" aria-expanded="false" aria-controls="voice-3" data-acc="voice-3">
+            <span class="voice__thumb"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_b1.jpg" alt="長見 祐希さん"></span>
+            <span><span class="voice__tag">人材支援</span><span class="voice__quote">いいご縁に巡り合えました。</span><span class="voice__who"><b>長見 祐希</b>職業紹介事業部 営業（2020年入社）</span></span>
+            <span class="voice__pm" aria-hidden="true"></span>
+          </button>
+          <div class="voice__body" id="voice-3"><div><div class="voice__body-inner text-body"><p>転職活動で悩んでいた時に相談していた方から、「信頼していて、すごくいい会社があるよ」と紹介して頂いたのがトータルウィンでした。</p><p>その時は何社か内定を頂いており、漠然と雰囲気が少し違うなぁと決めあぐねていました。ですが、実際にトータルウィンの社長と現場の方とお話する機会を頂き、会社の考え方や事業の目的が本当に魅力的で、すぐにでもトータルウィンに入って仕事をしたい！という想いが込み上げてきました。</p><p>入社した今でもその気持ちは変わらず、日々変化していく会社が楽しく、自分もその中で成長を続けていきたいです。</p><ul class="voice__pics voice__pics--center"><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_b2.jpg" alt="" loading="lazy"></li><li><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/recruit_b3.jpg" alt="" loading="lazy"></li></ul></div></div></div>
         </li>
       </ul>
-      <div class="people__btns"><a class="btn btn--outline" href="#" data-cta="people-more">インタビューをもっと見る<span class="btn__arrow">→</span></a></div>
     </div>
   </div>
 </section>
@@ -845,10 +930,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <section class="faq" id="faq">
   <div class="wrap faq__inner">
     <div class="faq__side fade-up">
-      <span class="section-label">よくある質問</span>
+      <span class="section-label">よくあるご質問</span>
       <h2 class="section-title">応募の前に、<br>気になること。</h2>
       <p class="text-body">まずはきらり事業部の既存の「よくある質問」から、どの事業にも共通する質問を掲載しています。ここにない質問は、お電話でもお気軽にどうぞ。</p>
-      <div class="btn-group"><a class="btn btn--outline" href="#" data-cta="faq-all">よくある質問をすべて見る<span class="btn__arrow">→</span></a></div>
+      <div class="btn-group"><a class="btn btn--outline" href="#" data-cta="faq-all">よくあるご質問へ<span class="btn__arrow" aria-hidden="true"></span></a></div>
     </div>
     <div class="faq__list fade-up">
       <div class="faq__item">
@@ -887,29 +972,29 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="entry__bg"><img src="https://advance2003.com/wp2/wp-content/themes/advanceGroup_20210828/images/scroll5.jpg" alt=""></div>
     <div class="wrap entry__inner">
       <div class="entry__blocks fade-up">
-        <a class="entry__block" href="#" data-cta="entry-requirements">
-          <p class="entry__block-title">募集要項</p>
-          <span class="entry__block-sub">職種・勤務地・待遇を見る</span>
-          <span class="btn__arrow">→</span>
+        <a class="entry__block" href="#work" data-cta="entry-work">
+          <p class="entry__block-title">働き方・環境</p>
+          <span class="entry__block-sub">給与・休暇・研修について</span>
+          <span class="entry__block-arrow" aria-hidden="true"></span>
         </a>
         <a class="entry__block" href="#" data-cta="entry-form">
-          <p class="entry__block-title">応募・お問い合わせ</p>
+          <p class="entry__block-title">採用のお問い合わせ</p>
           <span class="entry__block-sub">見学・相談だけでも歓迎です</span>
-          <span class="btn__arrow">→</span>
+          <span class="entry__block-arrow" aria-hidden="true"></span>
         </a>
       </div>
 
       <div class="entry__jobs fade-up">
-        <a class="entry__job" href="#" data-cta="entry-job-kirari">きらりの求人を見る<span class="entry__job-arrow" aria-hidden="true"></span></a>
-        <a class="entry__job" href="#" data-cta="entry-job-advance">アドバンスの求人を見る<span class="entry__job-arrow" aria-hidden="true"></span></a>
-        <a class="entry__job" href="#" data-cta="entry-job-kotonoha">KOTONOHAの求人を見る<span class="entry__job-arrow" aria-hidden="true"></span></a>
+        <a class="entry__job" href="#" data-cta="entry-job-kirari">きらりの求人を見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
+        <a class="entry__job" href="#" data-cta="entry-job-advance">アドバンスの求人を見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
+        <a class="entry__job" href="#" data-cta="entry-job-kotonoha">KOTONOHAの求人を見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a>
       </div>
 
       <div class="entry__tel fade-up">
         <p class="entry__tel-label">求人受付専用</p>
         <p class="entry__tel-num"><a href="tel:08071464579" data-cta="entry-tel">080-7146-4579</a></p>
         <p class="entry__tel-hours">受付時間　平日 9:00〜18:00</p>
-        <p class="entry__tel-note">お問い合わせフォームは <a href="https://advance2003.com/contact/" target="_blank" rel="noopener">企業サイトのお問い合わせ</a> をご利用ください。</p>
+        <p class="entry__tel-note">お問い合わせフォームは <a href="https://advance2003.com/contact/" target="_blank" rel="noopener">企業サイトのお問い合わせ<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a> をご利用ください。</p>
       </div>
     </div>
   </div>
@@ -924,36 +1009,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
-      <a href="#top" class="footer__logo" aria-label="ページ上部へ"><svg class="logo-svg" role="img" aria-label="ADVANCE GROUP" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 32"><use href="#logo-advance"/></svg></a>
-      <p class="footer__logo-sub">採用サイト</p>
+      <a href="#top" class="footer__logo" aria-label="ページ上部へ"><svg class="logo-svg" role="img" aria-label="ADVANCE GROUP" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 32"><use href="#logo-advance"/></svg><span class="logo-recruit footer__logo-sub">RECRUIT</span></a>
     </div>
     <div class="footer__cols">
       <div>
-        <p class="footer__heading">アドバンスグループ</p>
         <address>有限会社アドバンスグループ<br>〒726-0002 広島県府中市鵜飼町681-1<br>TEL 0847-54-2166　FAX 0847-54-2167</address>
       </div>
       <div>
-        <p class="footer__heading">採用情報</p>
         <ul>
-          <li><a href="#about">私たちについて</a></li>
           <li><a href="#business">事業・職種から探す</a></li>
-          <li><a href="#work">働く環境</a></li>
-          <li><a href="#people">先輩の声</a></li>
+          <li><a href="#news">お知らせ</a></li>
+          <li><a href="#about">私たちについて</a></li>
+          <li><a href="#work">働き方・環境</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer__heading">その他</p>
         <ul>
-          <li><a href="#news">お知らせ</a></li>
-          <li><a href="#faq">よくある質問</a></li>
-          <li><a href="https://advance2003.com/" target="_blank" rel="noopener">企業サイト</a></li>
+          <li><a href="#faq">よくあるご質問</a></li>
           <li><a href="https://advance2003.com/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a></li>
+          <li><a href="https://advance2003.com/" target="_blank" rel="noopener">企業サイト<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
       <span>© Advance Group Co.,Ltd.</span>
-      <span>design v0.18 ― 写真は企業サイトの既存素材を仮置き。【要確認】は公開前に裏取り。</span>
     </div>
   </div>
 </footer>
@@ -961,6 +1040,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <!-- ロゴSVG（ヘッダー・フッターから <use> で参照） -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <!-- 外部リンクアイコン：枠から右上へ抜ける矢印 -->
+  <symbol id="icon-external" viewBox="0 0 16 16"><path d="M6.5 3H3v10h10V9.5"/><path d="M9.5 3H13v3.5"/><path d="M13 3 7.5 8.5"/></symbol>
   <symbol id="logo-advance" viewBox="0 0 264 32"><g><g><path fill="#50ACD5" d="M10.8,26.5c-3.9,1.5-8.4-0.4-9.9-4.3s0.4-8.4,4.3-9.9s8.4,0.4,9.9,4.3S14.7,24.9,10.8,26.5z"/><path fill="#C28734" d="M39.2,26.3c-5.1,2-10.9-0.5-12.9-5.6s0.5-10.9,5.6-12.9s10.9,0.5,12.9,5.6C46.8,18.5,44.3,24.3,39.2,26.3z"/><path fill="#C33847" d="M72.2,26.2c-6.3,2.5-13.4-0.6-15.9-6.9C53.9,13,56.9,5.9,63.2,3.4S76.6,4,79.1,10.3 C81.5,16.6,78.5,23.7,72.2,26.2z"/></g><g><g><g><g><path fill="currentColor" d="M198.1,12.2c-2.4,0-4.4-2-4.4-4.4v-3c0-2.4,2-4.4,4.4-4.4h4.1c1.9,0,3.5,1.2,4.1,2.9 c0.1,0.2,0.1,0.4,0,0.6c-0.1,0.2-0.3,0.4-0.5,0.4c-0.1,0-0.2,0-0.3,0c-0.4,0-0.7-0.2-0.8-0.6c-0.4-1.1-1.4-1.8-2.6-1.8h-4.1 c-1.5,0-2.7,1.2-2.7,2.7v3c0,1.5,1.2,2.7,2.7,2.7h4.1c1.1,0,2.1-0.7,2.5-1.7l0-1.7h-3c-0.5,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8 h3.8c0.5,0,0.8,0.4,0.8,0.8V9c0,0.1,0,0.3-0.1,0.4c-0.6,1.7-2.3,2.8-4.1,2.8H198.1z"/></g><g><path fill="currentColor" d="M210,12.2c-0.5,0-0.8-0.4-0.8-0.8V7c0-0.5,0.4-0.8,0.8-0.8h5.7c1.1,0,2-0.9,2-2s-0.9-2-2-2H210 c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8h5.7c2.1,0,3.7,1.7,3.7,3.7c0,1.1-0.5,2.1-1.3,2.8c0.8,0.6,1.3,1.6,1.3,2.6v1.8 c0,0.5-0.4,0.8-0.8,0.8c-0.5,0-0.8-0.4-0.8-0.8V9.6c0-0.9-0.8-1.7-1.7-1.7h-5.2v3.5C210.9,11.9,210.5,12.2,210,12.2z"/></g><g><path fill="currentColor" d="M226.6,12.2c-2.4,0-4.4-2-4.4-4.4v-3c0-2.4,2-4.4,4.4-4.4h4.4c2.4,0,4.4,2,4.4,4.4v3c0,2.4-2,4.4-4.4,4.4 H226.6z M226.6,2.1c-1.5,0-2.7,1.2-2.7,2.7v3c0,1.5,1.2,2.7,2.7,2.7h4.4c1.5,0,2.7-1.2,2.7-2.7v-3c0-1.5-1.2-2.7-2.7-2.7H226.6 z"/></g><g><path fill="currentColor" d="M242.6,12.2c-2.4,0-4.4-2-4.4-4.4V1.3c0-0.5,0.4-0.8,0.8-0.8c0.5,0,0.8,0.4,0.8,0.8v6.6 c0,1.5,1.2,2.7,2.7,2.7h3.7c1.5,0,2.7-1.2,2.7-2.7V1.3c0-0.5,0.4-0.8,0.8-0.8c0.5,0,0.8,0.4,0.8,0.8v6.6c0,2.4-2,4.4-4.4,4.4 H242.6z"/></g><g><path fill="currentColor" d="M254.2,12.2c-0.5,0-0.8-0.4-0.8-0.8V7c0-0.5,0.4-0.8,0.8-0.8h5.7c1.1,0,2-0.9,2-2s-0.9-2-2-2h-5.7 c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8h5.7c2.1,0,3.7,1.7,3.7,3.7s-1.7,3.7-3.7,3.7h-4.8v3.5 C255.1,11.9,254.7,12.2,254.2,12.2z"/></g></g><g><g><path fill="currentColor" d="M102.7,12.1c-0.3,0-0.6-0.2-0.8-0.5l-1.4-3.3H97c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8h2.8l-2-4.6 l-4.2,9.6c-0.1,0.3-0.4,0.5-0.8,0.5c-0.1,0-0.2,0-0.3-0.1c-0.4-0.2-0.6-0.7-0.4-1.1l4.2-9.6c0.3-0.6,0.9-1,1.5-1 c0.7,0,1.3,0.4,1.5,1l4.1,9.6c0.1,0.2,0.1,0.4,0,0.6c-0.1,0.2-0.2,0.4-0.4,0.5C102.9,12.1,102.8,12.1,102.7,12.1z"/></g><g><path fill="currentColor" d="M108.9,12.1c-1.6,0-3-1.3-3-3V2.3c0-1.1,0.9-1.9,1.9-1.9h6.2c2.4,0,4.4,2,4.4,4.4v3c0,2.4-2,4.4-4.4,4.4 H108.9z M107.9,2c-0.1,0-0.2,0.1-0.2,0.2v6.9c0,0.7,0.6,1.3,1.3,1.3h5.1c1.5,0,2.7-1.2,2.7-2.7v-3c0-1.5-1.2-2.7-2.7-2.7H107.9 z"/></g><g><path fill="currentColor" d="M126.4,12.1c-0.7,0-1.2-0.4-1.5-1l-4.3-9.6c-0.2-0.4,0-0.9,0.4-1.1c0.1,0,0.2-0.1,0.3-0.1 c0.3,0,0.6,0.2,0.8,0.5l4.3,9.6l4-9.6c0.1-0.3,0.4-0.5,0.8-0.5c0.1,0,0.2,0,0.3,0.1c0.2,0.1,0.4,0.3,0.5,0.5 c0.1,0.2,0.1,0.4,0,0.6l-4,9.6C127.7,11.7,127.1,12.1,126.4,12.1L126.4,12.1L126.4,12.1z"/></g><g><path fill="currentColor" d="M143.5,12.1c-0.3,0-0.6-0.2-0.8-0.5l-1.4-3.3h-3.5c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8h2.8 l-2-4.6l-4.2,9.6c-0.1,0.3-0.4,0.5-0.8,0.5c-0.1,0-0.2,0-0.3-0.1c-0.4-0.2-0.6-0.7-0.4-1.1l4.2-9.6c0.3-0.6,0.9-1,1.5-1 c0.7,0,1.3,0.4,1.5,1l4.1,9.6c0.1,0.2,0.1,0.4,0,0.6c-0.1,0.2-0.2,0.4-0.4,0.5C143.7,12.1,143.6,12.1,143.5,12.1z"/></g><g><path fill="currentColor" d="M164.6,12.1c-2.4,0-4.4-2-4.4-4.4v-3c0-2.4,2-4.4,4.4-4.4h4.1c1.9,0,3.5,1.2,4.1,2.9 c0.1,0.2,0.1,0.4,0,0.6c-0.1,0.2-0.3,0.4-0.5,0.4c-0.1,0-0.2,0-0.3,0c-0.4,0-0.7-0.2-0.8-0.6c-0.4-1.1-1.4-1.8-2.6-1.8h-4.1 c-1.5,0-2.7,1.2-2.7,2.7v3c0,1.5,1.2,2.7,2.7,2.7h4.1c1.1,0,2.2-0.7,2.6-1.8c0.1-0.3,0.4-0.6,0.8-0.6c0.5,0,0.8,0.4,0.8,0.8 c0,0.1,0,0.2-0.1,0.4c-0.6,1.7-2.3,2.8-4.1,2.8H164.6z"/></g><g><path fill="currentColor" d="M178.5,12.1c-1.6,0-3-1.3-3-3V3.3c0-1.6,1.3-3,3-3h6.2c0.5,0,0.8,0.4,0.8,0.8c0,0.5-0.4,0.8-0.8,0.8h-6.2 c-0.7,0-1.3,0.6-1.3,1.3v5.9c0,0.7,0.6,1.3,1.3,1.3h6.9c0.5,0,0.8,0.4,0.8,0.8c0,0.5-0.4,0.8-0.8,0.8H178.5z M178.9,7.1 c-0.5,0-0.8-0.4-0.8-0.8c0-0.5,0.4-0.8,0.8-0.8h3.3c0.5,0,0.8,0.4,0.8,0.8c0,0.5-0.4,0.8-0.8,0.8H178.9z"/></g><path fill="currentColor" d="M156.9,12.2c-0.5,0-0.9-0.4-0.9-0.9V4.8c0-1.4-1-2.6-2.3-2.6h-3.3c-1.3,0-2.3,1.2-2.3,2.6v6.6 c0,0.5-0.4,0.9-0.9,0.9c-0.5,0-0.9-0.4-0.9-0.9V4.8c0-2.5,1.8-4.5,4-4.5h3.3c2.2,0,4,2,4,4.5v6.6 C157.8,11.8,157.4,12.2,156.9,12.2z"/></g></g><g><g><path fill="currentColor" d="M98.3,31.5c-0.4,0-0.6-0.3-0.6-0.6c0-0.5,0.3-0.5,0.7-0.6c2.2-0.3,2.5-1.6,2.5-2.3c0-1-0.5-1.7-1.6-2 c-1,2.5-3,5-5.2,5c-1.2,0-2-0.8-2-2.1c0-1.6,1.2-3,3.2-3.8c0.1-0.6,0.1-0.9,0.1-1.3c-0.3,0-0.6,0-0.7,0c-1.8,0-2.1,0-2.1-0.6 c0-0.4,0.2-0.6,0.6-0.6c0,0,0.2,0,0.4,0c0.4,0,0.9,0,1,0c0.1,0,0.3,0,0.4,0c0.2,0,0.4,0,0.6,0l0,0c0.1-0.5,0.2-0.9,0.3-1.3 c0.1-0.3,0.3-0.5,0.6-0.5c0.4,0,0.6,0.3,0.6,0.5c0,0,0,0-0.1,0.3l0,0.1c-0.1,0.3-0.1,0.6-0.2,0.8c0.8-0.1,1.7-0.1,3-0.4 c0,0,0.9-0.2,1-0.2c0.4,0,0.6,0.3,0.6,0.6c0,0.5-0.4,0.5-0.7,0.6c-1.4,0.3-3.3,0.4-4.1,0.5c0,0.2-0.1,0.6-0.1,1 c0.4-0.1,0.9-0.2,1.5-0.2c3.1,0,4.2,1.7,4.2,3.3C102.1,31.2,98.3,31.5,98.3,31.5z M95.2,26.5c-1,0.5-2,1.4-2,2.5 c0,0.6,0.3,0.9,0.9,0.9c0.5,0,0.9-0.2,1.4-0.5C95.3,28.5,95.1,27.5,95.2,26.5z M96.3,26.1c0,0.9,0,1.8,0.1,2.5 c0.9-1,1.4-2.1,1.7-2.7c-0.1,0-0.1,0-0.2,0C97.3,25.8,96.8,25.9,96.3,26.1z"/></g><g><path fill="currentColor" d="M139.9,31.2c-0.3,0-1.8-0.1-1.8-1.7c0-0.2,0.1-0.7,0.2-1.3c0.1-0.5,0.2-1.1,0.2-1.3c0-0.4-0.2-0.6-0.6-0.6 c-0.3,0-1.7,0.1-2.9,2.2c-0.1,0.1-0.3,0.6-0.6,1.2l-0.5,1c-0.1,0.2-0.2,0.4-0.5,0.4c-0.3,0-0.6-0.2-0.6-0.6c0,0,0-0.2,0.5-1.2 l1.1-2.2c0.9-1.9,2-4,2.7-5.4c0.1-0.2,0.2-0.4,0.6-0.4c0.3,0,0.7,0.3,0.7,0.6c0,0.2-0.2,0.6-0.3,0.8c-0.1,0.1-0.6,1.1-1.1,2 l-0.6,1.1c0.5-0.3,1.1-0.5,1.6-0.5c0.8,0,1.7,0.4,1.7,1.7c0,0.4,0,0.5-0.2,1.6c-0.1,0.6-0.1,0.8-0.1,1c0,0.4,0.2,0.6,0.7,0.6 c0.8,0,1.5-0.6,1.9-1.7c0.2-0.5,0.3-0.7,0.6-0.7c0.3,0,0.6,0.2,0.6,0.5C143,28.4,142.2,31.2,139.9,31.2z"/></g><g><path fill="currentColor" d="M148.9,31.8c-0.4,0-0.6-0.4-0.6-0.6c0-0.3,0.1-0.4,0.9-0.8c0.5-0.2,1.3-0.6,1.6-1.5 c-0.4,0.2-0.8,0.4-1.3,0.4c-1.3,0-2.3-1-2.3-2.4c0-1.4,1-2.5,2.4-2.5c0.5,0,1,0.2,1.4,0.4l0-0.9l-3.5,0.1 c-0.2,0-1.5,0.1-1.7,0.1c-0.4,0-0.7-0.2-0.7-0.6c0-0.4,0.2-0.6,0.6-0.6h1.7l3.5-0.1l0-1.1c0-0.2,0-0.3,0.2-0.4 c0.2-0.2,0.4-0.2,0.4-0.2c0.4,0,0.6,0.2,0.6,0.6l0,1.1l1.1,0l0.3,0c0.5,0,1.1-0.1,1.3-0.1c0.4,0,0.6,0.2,0.6,0.6 c0,0.2-0.1,0.6-0.7,0.6h-1.5l-1.1,0l0,3.8c0,1.5-0.6,2.3-0.8,2.5C150.8,31.1,149.3,31.8,148.9,31.8z M149.7,25.5 c-0.7,0-1.2,0.5-1.2,1.3c0,0.9,0.6,1.3,1.2,1.3c0.8,0,1.3-0.7,1.3-1.4C151,26.2,150.6,25.5,149.7,25.5z"/></g><g><path fill="currentColor" d="M176.2,31.5c-1.6,0-3.2-0.6-3.2-2.1c0-1,0.9-1.8,2.1-1.8c1.3,0,2.4,0.9,2.9,2.3c1.1-0.6,1.2-1.6,1.2-2 c0-0.5-0.2-2-2.5-2c-1.9,0-3.4,1.2-3.8,1.5c-0.9,0.8-1,0.9-1.2,0.9c-0.4,0-0.6-0.3-0.6-0.6c0-0.3,0.1-0.4,0.6-0.7l0.1-0.1 c0,0,1.7-1.4,4.9-4.2c-1.4,0.1-2.8,0.2-3.9,0.2c-0.4,0-0.6-0.2-0.6-0.6c0-0.4,0.2-0.6,0.6-0.6c1.2,0,2.6,0,3.4-0.1 c0.1,0,0.5,0,0.5,0c0.5-0.1,1.1-0.1,1.2-0.1c0.6,0,0.8,0.4,0.8,0.7c0,0.3-0.1,0.4-0.9,1c-0.9,0.7-1.6,1.3-2.2,1.7 c0.4-0.1,0.9-0.1,1.3-0.1c2.1,0,3.5,1.2,3.5,3C180.4,30,178.7,31.5,176.2,31.5z M175.1,28.7c-0.6,0-0.9,0.3-0.9,0.7 c0,0.7,1,1,2,1c0.3,0,0.5,0,0.7-0.1C176.6,29.3,176,28.7,175.1,28.7z"/></g><g><path fill="currentColor" d="M184.1,27c-0.4,0-0.6-0.2-0.6-0.6c0-0.4,0.2-0.6,0.6-0.6h8.9c0.4,0,0.6,0.2,0.6,0.6c0,0.4-0.2,0.6-0.6,0.6 H184.1z"/></g><g><g><path fill="currentColor" d="M201.9,23.6c-0.1,0-0.3-0.1-1-0.3l0,0c-0.1-0.1-0.2-0.1-0.3-0.1c-0.3-0.1-0.8-0.2-1.2-0.3 c-0.3-0.1-0.6-0.2-0.8-0.2c-0.4-0.1-0.5-0.4-0.5-0.5c0-0.4,0.3-0.6,0.6-0.6c0.1,0,1.2,0.2,2.7,0.8c0.6,0.2,1,0.4,1,0.8 C202.4,23.2,202.3,23.6,201.9,23.6z"/></g><g><path fill="currentColor" d="M204.7,25c-0.9,0-1.7-0.8-1.7-1.7c0-0.9,0.8-1.7,1.7-1.7c0.9,0,1.7,0.8,1.7,1.7 C206.4,24.3,205.6,25,204.7,25z M204.7,22.6c-0.4,0-0.7,0.3-0.7,0.7c0,0.4,0.3,0.7,0.7,0.7c0.4,0,0.7-0.3,0.7-0.7 C205.4,23,205,22.6,204.7,22.6z"/></g><g><path fill="currentColor" d="M204.8,29.3c-0.3,0-0.4-0.1-0.8-0.7c-0.4-0.6-0.8-1.4-1.3-2c-0.2-0.2-0.3-0.3-0.3-0.5 c0-0.4,0.3-0.6,0.6-0.6c0.3,0,0.4,0.1,1,0.9c0,0,1.4,1.8,1.4,2.3C205.4,29,205.2,29.3,204.8,29.3z"/></g><g><path fill="currentColor" d="M195.5,29.8c-0.3,0-0.6-0.3-0.6-0.6c0-0.3,0.1-0.4,0.5-0.7c0.6-0.5,1.3-1.1,1.9-1.7 c0.2-0.2,0.3-0.3,0.5-0.3c0.3,0,0.6,0.3,0.6,0.6c0,0.2-0.2,0.6-1.4,1.7C195.9,29.8,195.6,29.8,195.5,29.8z"/></g><g><path fill="currentColor" d="M200.2,31.3c-0.8,0-1.6-0.2-1.9-0.4c-0.2-0.1-0.3-0.3-0.3-0.5c0-0.3,0.3-0.6,0.6-0.6c0.1,0,0.2,0,0.6,0.1 c0.3,0.1,0.7,0.1,0.9,0.1c0.7,0,1.1-0.3,1.1-0.8c0-0.7-0.5-1.2-1.3-2.1c-0.8-0.8-1.1-1.2-1.1-2c0-0.8,0.5-1.7,1.1-1.7 c0.3,0,0.6,0.3,0.6,0.6c0,0.2-0.1,0.3-0.1,0.4c-0.2,0.3-0.3,0.4-0.3,0.7c0,0.3,0,0.4,1,1.4c1,1.2,1.5,1.8,1.5,2.7 C202.4,30.2,201.9,31.3,200.2,31.3z"/></g></g><g><g><path fill="currentColor" d="M110.8,31.2c-2.3,0-5-0.3-5-2.6c0-1.3,1-2.3,2.9-3.2c-0.1-0.4-0.2-0.9-0.3-1.3l-0.4-2c0-0.1,0-0.2,0-0.3 c0-0.3,0.3-0.6,0.7-0.6c0.5,0,0.6,0.4,0.6,0.7l0.4,1.9c0.1,0.4,0.2,0.8,0.2,1.1c2.3-0.8,3.3-1,3.5-1c0.4,0,0.6,0.4,0.6,0.6 c0,0.2-0.1,0.4-0.3,0.5c-0.1,0.1-0.3,0.1-1.3,0.4c-0.2,0.1-0.4,0.1-0.5,0.1c-3.3,0.9-4.8,1.8-4.8,3c0,0.9,1.2,1.4,3.6,1.4 c0.8,0,1.7-0.1,2.8-0.2c0.1,0,0.3,0,0.4-0.1l0.1,0c0.1,0,0.2,0,0.2,0c0.3,0,0.6,0.2,0.6,0.6c0,0.2-0.1,0.6-0.6,0.6 C113.7,31,112.3,31.2,110.8,31.2z"/></g><g><g><path fill="currentColor" d="M115.4,23.2c-0.3,0-0.4-0.1-0.6-0.7l-0.1-0.1c0-0.1-0.1-0.2-0.1-0.3c-0.3-0.8-0.3-0.8-0.3-0.9 c0-0.2,0.2-0.5,0.5-0.5c0.1,0,0.1,0,0.2,0c0.2,0.1,0.3,0.2,0.5,0.7c0.1,0.2,0.5,1,0.5,1.3C116,23,115.7,23.2,115.4,23.2z"/></g><g><path fill="currentColor" d="M113.9,23.5c-0.3,0-0.4-0.2-0.6-0.8c0-0.1-0.1-0.3-0.2-0.4c-0.3-0.8-0.3-0.8-0.3-0.9 c0-0.2,0.2-0.5,0.5-0.5c0.1,0,0.1,0,0.2,0c0.2,0.1,0.3,0.2,0.5,0.7c0.1,0.2,0.5,1,0.5,1.3C114.5,23.3,114.2,23.5,113.9,23.5z" /></g></g></g><g><g><path fill="currentColor" d="M120.3,31.3c-0.5,0-0.6-0.4-0.6-0.6c-0.3-1-0.4-2-0.4-3.9c0-1.7,0.4-4.6,0.7-5.1c0.1-0.1,0.2-0.3,0.5-0.3 c0.3,0,0.6,0.2,0.6,0.6c0,0.2,0,0.4-0.1,0.4c-0.3,1.5-0.5,3-0.5,4.5c0,0.9,0.1,2.1,0.4,3.2c0.1,0.3,0.1,0.4,0.1,0.5 C120.9,31.1,120.6,31.3,120.3,31.3z"/></g><g><path fill="currentColor" d="M124.4,31.3c-1.9,0-2.6-1.1-2.6-2c0-1.2,1-1.9,2.4-1.9c0.2,0,0.7,0,1.3,0.1l-0.1-2.6c-0.3,0-0.7,0-1.3,0 c-0.3,0-1.2,0-1.7-0.1c-0.4,0-0.6-0.2-0.6-0.6c0-0.4,0.2-0.6,0.6-0.6c0.2,0,0.6,0,1,0l0.1,0c0.3,0,0.7,0,0.8,0 c0.4,0,0.8,0,1.2,0l-0.1-1.8c0-0.2,0-0.4,0.2-0.5c0.1-0.1,0.3-0.2,0.4-0.2c0.4,0,0.6,0.2,0.6,0.6l0.1,1.8 c0.3,0,0.6-0.1,1.1-0.1c0.1,0,0.3,0,0.4,0c0.3,0,0.5,0.2,0.5,0.6c0,0.6-0.3,0.6-2,0.7l0.1,3c0.6,0.2,1.2,0.5,1.8,0.9 c0.2,0.1,0.4,0.3,0.4,0.6c0,0.3-0.3,0.6-0.6,0.6c-0.2,0-0.4-0.1-0.6-0.3c-0.3-0.2-0.7-0.4-1-0.6c0,0.5-0.1,1.2-0.5,1.6 C125.8,31.1,125.3,31.3,124.4,31.3z M124.3,28.5c-0.6,0-1.3,0.2-1.3,0.8c0,0.4,0.4,0.9,1.4,0.9c0.3,0,0.9-0.1,1.1-0.4 c0.1-0.2,0.1-0.5,0.1-1C125.1,28.6,124.7,28.5,124.3,28.5z"/></g><g><g><path fill="currentColor" d="M129.3,22.8c-0.3,0-0.4-0.1-0.6-0.7l-0.1-0.1c0-0.1-0.1-0.2-0.1-0.3c-0.3-0.8-0.3-0.8-0.3-0.9 c0-0.2,0.2-0.5,0.5-0.5c0.1,0,0.1,0,0.2,0c0.2,0.1,0.3,0.2,0.5,0.7c0.1,0.2,0.5,1,0.5,1.3C129.9,22.6,129.6,22.8,129.3,22.8z" /></g><g><path fill="currentColor" d="M127.8,23.1c-0.3,0-0.4-0.2-0.6-0.8c0-0.1-0.1-0.3-0.2-0.4c-0.3-0.8-0.3-0.8-0.3-0.9 c0-0.2,0.2-0.5,0.5-0.5c0.1,0,0.1,0,0.2,0c0.2,0.1,0.3,0.2,0.5,0.7c0.1,0.2,0.5,1,0.5,1.3C128.4,22.9,128.1,23.1,127.8,23.1z" /></g></g></g><g><g><path fill="currentColor" d="M165.3,31.6c-0.2,0-0.3-0.1-1-0.7c-1.5-1.3-3.1-2.2-5-3.3c-0.6-0.3-1-0.6-1-1.2c0-0.6,0.2-0.7,2-1.9 c1.9-1.2,3.2-2.2,3.8-2.7c0.6-0.5,0.6-0.5,0.9-0.5c0.4,0,0.7,0.3,0.7,0.6c0,0.3-0.3,0.6-0.8,0.9c-1.6,1.2-2.5,1.8-4.7,3.2 c-0.5,0.3-0.5,0.3-0.5,0.4c0,0,0.4,0.2,0.8,0.5c2.6,1.4,4.1,2.6,5,3.3l0.1,0.1c0.4,0.3,0.5,0.4,0.5,0.7 C166,31.2,165.7,31.6,165.3,31.6z"/></g><g><g><path fill="currentColor" d="M167.1,25.1c-0.2,0-0.3-0.1-0.6-0.5l-0.1-0.1c0,0-0.1-0.1-0.2-0.3l0-0.1c-0.5-0.6-0.5-0.6-0.6-0.7 c-0.1-0.2,0-0.5,0.3-0.6c0.1,0,0.1,0,0.2,0c0,0,0,0,0,0c0.2,0,0.4,0.1,0.7,0.5c0.1,0.1,0.8,0.8,0.9,1.1c0,0.1,0,0.3-0.1,0.4 c-0.1,0.1-0.2,0.2-0.3,0.2C167.2,25.1,167.1,25.1,167.1,25.1C167.1,25.1,167.1,25.1,167.1,25.1z"/></g><g><path fill="currentColor" d="M165.7,25.9c-0.2,0-0.3-0.2-0.7-0.6c-0.1-0.1-0.2-0.2-0.3-0.4c-0.5-0.6-0.6-0.7-0.6-0.7 c-0.1-0.2,0-0.5,0.3-0.6c0.1,0,0.1,0,0.2,0c0,0,0,0,0,0c0.3,0,0.4,0.1,0.7,0.5c0.2,0.2,0.8,0.8,0.9,1.1 c0.1,0.3-0.1,0.5-0.3,0.6C165.9,25.8,165.8,25.9,165.7,25.9z"/></g></g></g></g></g></g></symbol>
 </svg>
 
@@ -998,8 +1079,8 @@ if(heroPhoto&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.fade-up,.photo').forEach(el=>io.observe(el));
 
-// アコーディオン（§6／§17）：<button> + aria-expanded。複数同時に開ける
-document.querySelectorAll('.faq__q').forEach(btn=>{
+// アコーディオン（§6／§17）：<button> + aria-expanded。複数同時に開ける（よくあるご質問・先輩の声）
+document.querySelectorAll('.faq__q,.voice__toggle').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const open=btn.getAttribute('aria-expanded')==='true';
     btn.setAttribute('aria-expanded',String(!open));
