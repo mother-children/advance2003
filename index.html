@@ -13,6 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
 <!--
   アドバンスグループ 採用サイト TOP デザイン
+  v0.57 2026/9/14 事業カードの「拠点」行を4件とも削除し、事業セクションのリード文に拠点（福山市・府中市）を織り込んだ
+                 障害者就労継続支援B型事業の「主な職種」に「キラリワークス」を記載（指示どおり。旧「—」）
   v0.56 2026/9/9  SPメニューの事業所一覧：残り3件の名称にも外部リンクアイコンを付与（4件とも外部サイトへの導線として統一）
   v0.55 2026/9/9  #about / #people のアンカー着地位置を調整（scroll-margin-top: var(--space-section)）
                  （#news / #work はセクション自体に上余白 --space-section があるため見出しが固定ヘッダーに隠れない。上余白のない about / people に同じ量を scroll-margin-top で持たせた）
@@ -173,7 +175,7 @@
   ・「私たちについて」の写真2枚（about_1000／huchu_1000）は企業サイトの既存素材を仮置き。実写差し替え待ち（ビジョンイラストは v0.48 で不使用に）
   ・数値（創業／法人数／拠点／事業領域）は仮。公開前に裏取り
   ・KOTONOHA の運営法人表記を要確認
-  ・キラリワークス：主な職種（現在は空欄）・拠点の事業所名を要確認（法人名・紹介文は v0.29 でカードから削除）
+  ・キラリワークス：主な職種欄に「キラリワークス」を記載中（v0.57 指示）。職種名として適切か要確認
   ・キラリワークスの写真（HTML内に埋め込み。元：DSC04350.JPG）：利用者が写っているため掲載許諾を確認。工程③では画像ファイルとして切り出す
   ・handover.md「共通ルールを上書きする点」に §2-1 の逸脱（.biz__meta：事業カード内の補足情報 PC14px・SP13px ／ .news__cat / .voice__tag：12px ／ .btn / .header__nav：PC 15px ／ .footer__cols / .sp-menu__info：13px）を記載すること（§1-4 手順2）
   ・エントリー下部の「求人を見る」3件にキラリワークスを追加するか要判断（追加していない）
@@ -854,7 +856,7 @@ body.is-menu-open{overflow:hidden}
       <div class="fade-up">
         <h2 class="section-title">あなたの「やりたい」に<br>近い入口から。</h2>
       </div>
-      <p class="text-body fade-up">あなたの経験や「やりたい」に近い入口から、仕事の内容・働き方・募集職種を見ていただけます。事業は4つ。どこから入っても、同じアドバンスグループです。</p>
+      <p class="text-body fade-up">あなたの経験や「やりたい」に近い入口から、仕事の内容・働き方・募集職種を見ていただけます。事業は4つ、いずれも福山市・府中市が拠点です。どこから入っても、同じアドバンスグループです。</p>
     </div>
 
     <article class="biz biz--advance fade-up">
@@ -864,7 +866,6 @@ body.is-menu-open{overflow:hidden}
         <p class="biz__lead text-body">「利用者の当たり前」の生活を支える介護と、小規模だからこそ一人ひとりに向き合える保育を担う事業です。</p>
         <dl class="biz__meta">
           <dt>主な職種</dt><dd>介護職／看護職／ケアマネジャー／保育士／本部スタッフ など</dd>
-          <dt>拠点</dt><dd>元町ふれあいセンター／府中ふれあいホームうかい／ふれあいの家／ここから／いまから／ここから保育園</dd>
         </dl>
         <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-advance">詳しく見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a></div>
       </div>
@@ -877,7 +878,6 @@ body.is-menu-open{overflow:hidden}
         <p class="biz__lead text-body">3歳〜18歳の子どもたちの「できた！」を、少人数のチームで一緒に育てる。府中・福山で展開する療育の事業です。</p>
         <dl class="biz__meta">
           <dt>主な職種</dt><dd>保育士／児童指導員／作業療法士・理学療法士 など</dd>
-          <dt>拠点</dt><dd>きらり・きらりぷらす・あそLabo（府中・福山）</dd>
         </dl>
         <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-kirari">詳しく見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a></div>
       </div>
@@ -890,8 +890,7 @@ body.is-menu-open{overflow:hidden}
         <h3 class="biz__title">障害者就労継続支援B型事業</h3>
         <p class="biz__lead text-body">障がいのある方が、自分のペースで働き続けられる場所をつくる。紙漉きなど多様な「働く」を支える事業です。</p>
         <dl class="biz__meta">
-          <dt>主な職種</dt><dd>—</dd>
-          <dt>拠点</dt><dd>福山市・府中市</dd>
+          <dt>主な職種</dt><dd>キラリワークス</dd>
         </dl>
         <div class="biz__act"><a class="btn btn--line" href="https://kirariworks.jp/" target="_blank" rel="noopener" data-cta="biz-kirariworks">詳しく見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a></div>
       </div>
@@ -904,7 +903,6 @@ body.is-menu-open{overflow:hidden}
         <p class="biz__lead text-body">登録支援機関として、海外からの人材の受け入れから就職・定着まで支え、介護・福祉の現場と人をつなぐ事業です。</p>
         <dl class="biz__meta">
           <dt>主な職種</dt><dd>キャリアアドバイザー／登録支援機関スタッフ など</dd>
-          <dt>拠点</dt><dd>求人支援センター福山 ほか</dd>
         </dl>
         <div class="biz__act"><a class="btn btn--line" href="#" data-cta="biz-kotonoha">詳しく見る<svg class="icon-ext" aria-hidden="true" focusable="false"><use href="#icon-external"/></svg></a></div>
       </div>
